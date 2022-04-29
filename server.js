@@ -24,7 +24,7 @@ app.get("/generate/:amount", (req, res) => {
     };
 
     if (validRange) {
-        console.log(`User's input: ${req.params.amount} - Responded with random a sentence(s).`);
+        console.log(`User's input: ${req.params.amount} - Responded with a random sentence(s).`);
         
         for (let i = 0; i < req.params.amount; i++) {
             responseData.message += `${randomSentence()}<br>`;

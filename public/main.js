@@ -1,15 +1,25 @@
 const generateAmountInput = document.getElementById("generateAmountInput");
 const generateButton = document.getElementById("generateButton");
-const responseText = document.getElementById("responseText");
+const responseContainer = document.getElementById("responseContainer");
 
 //Send the server client's request on button press//
 const sendButtonReq = async (amount) => {
     const response = await fetch("/generate/" + amount);
     const result = await response.json();
-    responseText.innerHTML = result.message;
+    responseContainer.innerText = '';
+    result.sentences.forEach((sentence) => {
+        const sentenceOneEl = document.createElement("h2");
+        sentenceOneEl.setAttribute("class", "sentence");
+        sentenceOneEl.innerText = sentence;
+        responseContainer.appendChild(sentenceOneEl);
+    });
 };
 
 //Pressing button will shoot function//
 generateButton.addEventListener('click', () => {
-    sendButtonReq(generateAmountInput.value);
+    if (generateAmountInput.value === '') {
+        sendButtonReq(1);
+    } else {
+        sendButtonReq(generateAmountInput.value);
+    }
 });

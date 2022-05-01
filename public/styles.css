@@ -75,6 +75,6 @@ body {
     top: 235px;
 }
 
-#responseText {
+.sentence {
     color: white;
 }

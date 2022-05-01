@@ -13,41 +13,28 @@ app.get("/", (req, res) => {
 
 //Recieve client's request, respond with random sentence//
 app.get("/generate/:amount", (req, res) => {
-    console.log(`User's input: ${req.params.amount} - Responded with random sentence(s).`);
 
-    // Constant that has 1-5 range numbers// <--- Experimental
-    //const numberRange = /[1-5]/;
-    // const validRange = numberRange.test(req.params.amount);
+    //Valid number range.
+    const numberRange = /[1-5]/;
+    const validRange = numberRange.test(req.params.amount);
 
-    //Send function only when the input is in range. Yes, i know it is silly. I need to think how to make it easier LOL//
-    if (req.params.amount == 5) {
-        res.send({
-            message: `${randomSentence()}<br>${randomSentence()}<br>${randomSentence()}<br>${randomSentence()}<br>${randomSentence()}`,
-        });
+    let responseData = {
+        sentences: [],
+    };
 
-    } else if (req.params.amount == 4) {
-        res.send({
-            message: `${randomSentence()}<br>${randomSentence()}<br>${randomSentence()}<br>${randomSentence()}`,
-        });
-
-    } else if (req.params.amount == 3) {
-        res.send({
-            message: `${randomSentence()}<br>${randomSentence()}<br>${randomSentence()}`,
-        });
-
-    } else if (req.params.amount == 2) {
-        res.send({
-            message: `${randomSentence()}<br>${randomSentence()}`,
-        });
-
-    } else if (req.params.amount == 1) {
-        res.send({
-            message: `${randomSentence()}`,
-        });
-
+    if (validRange) {
+        console.log(`User's input: ${req.params.amount} - Responded with a random sentence(s).`);
+        
+        for (let i = 0; i < req.params.amount; i++) {
+            responseData.sentences.push(randomSentence());
+        };
+        res.send(responseData);
+        
     } else {
+        console.log(`User's input: ${req.params.amount} - Responded with an error.`);
+
         res.send({
-            message: "Error, make sure you type a number ranged between 1-5.",
+            sentences: ["Error, make sure you type a number ranged between 1-5."]
         });
     }
 });

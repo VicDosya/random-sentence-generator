@@ -1,4 +1,3 @@
-const { response } = require("express");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,22 +19,22 @@ app.get("/generate/:amount", (req, res) => {
     const validRange = numberRange.test(req.params.amount);
 
     let responseData = {
-        message: " ",
+        sentences: [],
     };
 
     if (validRange) {
         console.log(`User's input: ${req.params.amount} - Responded with a random sentence(s).`);
         
         for (let i = 0; i < req.params.amount; i++) {
-            responseData.message += `${randomSentence()}<br>`;
+            responseData.sentences.push(randomSentence());
         };
-
         res.send(responseData);
+        
     } else {
         console.log(`User's input: ${req.params.amount} - Responded with an error.`);
 
         res.send({
-            message: "Error, make sure you type a number ranged between 1-5.",
+            sentences: ["Error, make sure you type a number ranged between 1-5."]
         });
     }
 });

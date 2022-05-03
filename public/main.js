@@ -7,13 +7,14 @@ const sendButtonReq = async (amount) => {
     const response = await fetch("/generate/" + amount);
     const result = await response.json();
     responseContainer.innerText = '';
+    errorResponse.innerText = '';
 
     // Recieve error message and create new HTML element.//
     result.errors.forEach((error) => {
         const errorEl = document.createElement("h2");
         errorEl.setAttribute("class", "errorClass");
         errorEl.innerText = error;
-        responseContainer.appendChild(errorEl);
+        errorResponse.appendChild(errorEl);
     });
 
     // Recieve sentence message and create new HTML element.//

@@ -9,7 +9,6 @@ body {
     text-align: center;
     margin: auto;
     border-radius: 10px;
-    position: relative;
 }
 
 #titleContainer {
@@ -69,10 +68,8 @@ body {
 }
 
 #responseContainer {
-    position: absolute;
     width: 100%;
     height: 435px;
-    top: 235px;
 }
 
 .sentence {
@@ -84,10 +81,7 @@ body {
 }
 
 #errorResponse {
-    position: absolute;
     width: 100%;
-    height: 435px;
-    top: 235px;
     font-size: 12px;
 }
 

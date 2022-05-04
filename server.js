@@ -20,21 +20,23 @@ app.get("/generate/:amount", (req, res) => {
 
     let responseData = {
         sentences: [],
+        errors: [],
     };
 
     if (validRange) {
         console.log(`User's input: ${req.params.amount} - Responded with a random sentence(s).`);
-        
+
         for (let i = 0; i < req.params.amount; i++) {
             responseData.sentences.push(randomSentence());
         };
         res.send(responseData);
-        
+
     } else {
         console.log(`User's input: ${req.params.amount} - Responded with an error.`);
 
         res.send({
-            sentences: ["Error, make sure you type a number ranged between 1-5."]
+            sentences: [" "],
+            errors: ["Error, make sure you type a number ranged between 1-5."],
         });
     }
 });

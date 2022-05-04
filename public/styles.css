@@ -9,7 +9,6 @@ body {
     text-align: center;
     margin: auto;
     border-radius: 10px;
-    position: relative;
 }
 
 #titleContainer {
@@ -69,12 +68,20 @@ body {
 }
 
 #responseContainer {
-    position: absolute;
     width: 100%;
     height: 435px;
-    top: 235px;
 }
 
 .sentence {
     color: white;
 }
+
+.errorClass {
+    color: rgb(230, 36, 36);
+}
+
+#errorResponse {
+    width: 100%;
+    font-size: 12px;
+}
+
